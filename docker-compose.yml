@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    tty: true
+    container_name: localhost
+    env_file:
+      - .env
+    ports:
+      - ${MYSQL_ROOT_PORT}:3306
+    networks:
+      - app-network
+    environment:
+       MYSQL_ROOT_PASSWORD: 'pass'
+       MYSQL_DATABASE: 'db'
+       MYSQL_USER: 'user'
+       MYSQL_PASSWORD: 'pass'
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+  node_modules:
